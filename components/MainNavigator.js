@@ -4,7 +4,10 @@ import DeckListView from './DeckListView';
 
 const MainNavigator = StackNavigator({
     DeckList: {
-        screen: DeckListView
+        screen: DeckListView,
+        navigationOptions: {
+            header: null,
+        },
     }
 });
 
