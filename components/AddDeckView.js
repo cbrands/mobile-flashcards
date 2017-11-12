@@ -13,12 +13,11 @@ export class AddDeckView extends Component {
         this.setState({ title: "" });
         this.props.dispatch(addDeck(title));
         //storeDeck(title);
+        this.props.navigation.goBack();
     };
 
 
     render() {
-        const navigation = this.props.navigation;
-
         return (
             <View style={{ flex: 1 }}>
                 <Text>Name your new Deck.</Text>

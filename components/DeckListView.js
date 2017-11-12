@@ -21,6 +21,7 @@ export class DeckListView extends Component {
         }
 
         const navigation = this.props.navigation;
+        console.log('navigation', navigation);
         const decks = Object.values(this.props.decks);
         // console.log('decksArray', decksArray);
         // const decks = Object.values(decksArray);
