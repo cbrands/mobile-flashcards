@@ -1,24 +1,21 @@
-import { StackNavigator } from 'react-navigation'
+import { TabNavigator } from 'react-navigation'
 import React from 'react';
-
-import { Icon } from 'react-native-elements';
-
 import DeckListView from './DeckListView';
 import AddDeckView from './AddDeckView';
 
-const MainNavigator = StackNavigator({
+const MainTabNavigator = TabNavigator({
     DeckList: {
         screen: DeckListView,
         navigationOptions: {
-            header: null,
-        },
+            tabBarLabel: 'DECKS'
+        }
     },
     AddDeck: {
         screen: AddDeckView,
         navigationOptions: {
-            header: null
-        },
+            tabBarLabel: 'NEW DECK'
+        }
     }
 });
 
-export default MainNavigator
+export default MainTabNavigator
