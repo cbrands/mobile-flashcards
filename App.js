@@ -3,10 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from "react-redux";
 import MyStatusBar from './components/MyStatusBar';
-import MainTabNavigator from './components/MainTabNavigator'
+import MainStackNavigator from './components/MainStackNavigator'
 import reducer from "./reducers";
-import { retrieveDecks } from './utils/api'
-import { receiveDecks } from './actions'
+// import { retrieveDecks } from './utils/api'
+// import { receiveDecks } from './actions'
 
 const store = createStore(reducer);
 store.subscribe(() => console.log('store', store.getState()));
@@ -18,7 +18,7 @@ export default class App extends React.Component {
         <Provider store={store}>
             <View style={styles.container}>
                 <MyStatusBar />
-                <MainTabNavigator />
+                <MainStackNavigator />
             </View>
         </Provider>
     );

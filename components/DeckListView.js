@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList } from 'react-native';
-import _ from "lodash";
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import Deck from './Deck';
+
 
 export class DeckListView extends Component {
     isEmpty = (obj) => {
@@ -29,16 +28,17 @@ export class DeckListView extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <FlatList
-                    data={Object.values(decks)}
-                    renderItem={({ item: { questions, title } }) => {
-                        console.log('title', title);
+                    data={Object.values(this.props.decks)}
+                    renderItem={({ item: { id, title, cards } }) => {
                         return (
-                            <Text key={title}>{title}</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate("Deck", { id })} >
+                                <Text>{title}</Text>
+                                <Text>{cards.length} {cards.length === 1 ? "Card" : "Cards"}</Text>
+                            </TouchableOpacity>
                         );
                     }}
                     keyExtractor={item => item.title}
                 />
-
             </View>
         )
     }
