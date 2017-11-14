@@ -14,8 +14,9 @@ function deck(state = {}, action) {
                 decks: action.decks
             };
         case ADD_CARD: {
-            const {deckId, question, answer} = action
+            const {deckId, id, question, answer} = action
             const newCard = {
+                id,
                 question,
                 answer
             }

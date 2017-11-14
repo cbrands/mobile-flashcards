@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation'
 import React from 'react';
 import DeckListView from './DeckListView';
 import DeckView from './DeckView';
+import AddCardView from './AddCardView';
 import MainTabNavigator from './MainTabNavigator';
 
 
@@ -19,6 +20,12 @@ const MainStackNavigator = StackNavigator({
         screen: DeckView,
         navigationOptions: {
             title: "Deck"
+        }
+    },
+    AddCard: {
+        screen: AddCardView,
+        navigationOptions: {
+            title: "Add Card"
         }
     }
 });

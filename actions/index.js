@@ -17,11 +17,12 @@ export function receiveDecks(decks) {
     };
 }
 
-export function addCard(question, answer) {
+export function addCard(deckId, question, answer) {
     const id = makeId();
     return {
         type: ADD_CARD,
         deckId,
+        id,
         question,
         answer
     };

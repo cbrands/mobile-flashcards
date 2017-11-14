@@ -12,11 +12,12 @@ export class AddDeckView extends Component {
     };
 
     onSubmit = () => {
+        const deckId = this.props.navigation.state.params.deckId;
         const question = this.state.question;
         const answer = this.state.answer;
         this.setState({ question: "" });
         this.setState({ answer: "" });
-        this.props.dispatch(addCard(question, answer));
+        this.props.dispatch(addCard(deckId, question, answer));
         //storeDeck(title);
         this.props.navigation.goBack();
     };
