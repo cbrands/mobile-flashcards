@@ -17,11 +17,3 @@ export default function MyStatusBar() {
         </View>
     )
 }
-
-// export default function MyStatusBar () {
-//     return (
-//         <View style={styles.myStatusBar}>
-//             <StatusBar backgroundColor={purple} />
-//         </View>
-//     )
-// }

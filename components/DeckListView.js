@@ -9,7 +9,6 @@ export class DeckListView extends Component {
     }
 
     render() {
-        console.log("this.props.decks = ", this.props.decks);
         if (this.props.decks === null || this.isEmpty(this.props.decks)) {
             return (
                 <View>
@@ -20,10 +19,7 @@ export class DeckListView extends Component {
         }
 
         const navigation = this.props.navigation;
-        console.log('navigation', navigation);
         const decks = Object.values(this.props.decks);
-        // console.log('decksArray', decksArray);
-        // const decks = Object.values(decksArray);
         console.log('decks', decks);
         return (
             <View style={{ flex: 1 }}>
