@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, StyleSheet, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 import { storeDeck } from "../utils/api";
@@ -9,6 +9,7 @@ export class AddDeckView extends Component {
     state = { title: '' };
 
     onSubmit = () => {
+        Keyboard.dismiss()
         const title = this.state.title;
         this.setState({ title: "" });
         this.props.dispatch(addDeck(title));
