@@ -1,10 +1,10 @@
 import { StackNavigator } from 'react-navigation'
 import React from 'react';
-import DeckListView from './DeckListView';
 import DeckView from './DeckView';
 import AddCardView from './AddCardView';
 import QuizView from './QuizView';
 import MainTabNavigator from './MainTabNavigator';
+import { lightPurp, white } from '../utils/colors';
 
 
 const MainStackNavigator = StackNavigator({
@@ -14,25 +14,34 @@ const MainStackNavigator = StackNavigator({
             header: null
         }
     },
-    DeckList: {
-        screen: DeckListView
-    },
     Deck: {
         screen: DeckView,
         navigationOptions: {
-            title: "Deck"
+            title: "Deck",
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: lightPurp
+            }
         }
     },
     AddCard: {
         screen: AddCardView,
         navigationOptions: {
-            title: "Add Card"
+            title: "Add Card",
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: lightPurp
+            }
         }
     },
     Quiz: {
         screen: QuizView,
         navigationOptions: {
-            title: "Quiz"
+            title: "Quiz",
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: lightPurp
+            }
         }
     }
 });
