@@ -2,28 +2,28 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Card } from "./Card";
 import { connect } from "react-redux";
+import { clearLocalNotification, setLocalNotification } from "../utils/notification";
 import { purple, white } from '../utils/colors';
 
 class QuizView extends Component {
     state = {
         index: 0,
-        score: 0,
-        done: false
+        score: 0
     };
 
     handleAnswer = correct => {
         const deckId = this.props.navigation.state.params.deckId;
         const cards = this.props.decks[deckId].cards;
-        let { score, index, done } = this.state;
+        let { score, index } = this.state;
 
         if(correct) {
             score ++;
         }
         index++;
+        this.setState({ index, score });
         if (index === cards.length) {
-            done = true;
+            clearLocalNotification().then(setLocalNotification);
         }
-        this.setState({ index, score, done });
     };
 
     goBack = () => {
@@ -35,12 +35,10 @@ class QuizView extends Component {
     };
 
     render() {
-        console.log("props", this.props);
         const deckId = this.props.navigation.state.params.deckId;
         const cards = this.props.decks[deckId].cards;
-        const navigation = this.props.navigation;
-        const { index, score, done } = this.state;
-        if (done) {
+        const { index, score } = this.state;
+        if (index === cards.length) {
             return (
                 <View style={styles.quizView}>
                     <Text style={styles.text}>

@@ -7,22 +7,26 @@ import MainStackNavigator from './components/MainStackNavigator'
 import reducer from "./reducers";
 // import { retrieveDecks } from './utils/api'
 // import { receiveDecks } from './actions'
+import { setLocalNotification } from "./utils/notification";
 
 const store = createStore(reducer);
 store.subscribe(() => console.log('store', store.getState()));
 //retrieveDecks().then(data => store.dispatch(receiveDecks(data)))
 
 export default class App extends React.Component {
-  render() {
-    return (
-        <Provider store={store}>
-            <View style={styles.container}>
-                <MyStatusBar />
-                <MainStackNavigator />
-            </View>
-        </Provider>
-    );
-  }
+    componentDidMount() {
+        setLocalNotification();
+    }
+    render() {
+        return (
+            <Provider store={store}>
+                <View style={styles.container}>
+                    <MyStatusBar />
+                    <MainStackNavigator />
+                </View>
+            </Provider>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
