@@ -13,7 +13,7 @@ class QuizView extends Component {
 
     handleAnswer = correct => {
         const deckId = this.props.navigation.state.params.deckId;
-        const cards = this.props.decks[deckId].cards;
+        const cards = this.props.state.decks[deckId].cards;
         let { score, index } = this.state;
 
         if(correct) {
@@ -31,12 +31,14 @@ class QuizView extends Component {
     };
 
     restart = () => {
-        this.setState({ index: 0, score: 0, done: false });
+        this.setState({ index: 0, score: 0 });
     };
 
     render() {
         const deckId = this.props.navigation.state.params.deckId;
-        const cards = this.props.decks[deckId].cards;
+        console.log('quiz deckId', deckId);
+        const cards = this.props.state.decks[deckId].cards;
+        console.log('quiz cards', cards);
         const { index, score } = this.state;
         if (index === cards.length) {
             return (
@@ -97,9 +99,9 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps(decks) {
+function mapStateToProps(state) {
     return {
-        decks: decks
+        state
     };
 }
 

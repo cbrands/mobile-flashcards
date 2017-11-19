@@ -12,6 +12,8 @@ export class Card extends Component {
     };
 
     render() {
+        console.log('state', this.state);
+        console.log('card this.props', this.props);
         if (this.state.cardFlipped) {
             return (
                 <View style={styles.card}>

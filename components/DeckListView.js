@@ -5,12 +5,13 @@ import { white, black, lavender } from '../utils/colors';
 
 
 export class DeckListView extends Component {
-    isEmpty = (obj) => {
-        return (Object.getOwnPropertyNames(obj).length === 0);
+
+    selectDeck = deckId => {
+        this.props.navigation.navigate("Deck", { deckId })
     }
 
     render() {
-        if (this.props.decks === null || this.isEmpty(this.props.decks)) {
+        if (this.props.decks === null) {
             return (
                 <View style={styles.deckListView}>
                     <Text style={styles.text}>You have not yet created any decks.</Text>
@@ -19,16 +20,16 @@ export class DeckListView extends Component {
             );
         }
 
+        console.log('decklist =', this.props.decks);
+
         const navigation = this.props.navigation;
-        const decks = Object.values(this.props.decks);
-        console.log('decks', decks);
         return (
             <View style={styles.deckListView}>
                 <FlatList
                     data={Object.values(this.props.decks)}
-                    renderItem={({ item: { id, title, cards } }) => {
+                    renderItem={({ item: { deckId, title, cards } }) => {
                         return (
-                            <TouchableOpacity style={styles.flatListItem} onPress={() => navigation.navigate("Deck", { id })} >
+                            <TouchableOpacity style={styles.flatListItem} onPress={() => this.selectDeck(deckId)} >
                                 <Text style={styles.text}>{title}</Text>
                                 <Text style={styles.text}>{cards.length} {cards.length === 1 ? "Card" : "Cards"}</Text>
                             </TouchableOpacity>
@@ -41,10 +42,8 @@ export class DeckListView extends Component {
     }
 }
 
-function mapStateToProps(decks) {
-    return {
-        decks: decks
-    };
+function mapStateToProps(state) {
+    return state;
 }
 
 const dimensions = Dimensions.get('window');

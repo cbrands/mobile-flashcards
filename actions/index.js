@@ -1,8 +1,6 @@
 import { ADD_DECK, RECEIVE_DECKS, ADD_CARD } from './types';
-import { makeId } from '../utils/helper';
 
-export function addDeck(title) {
-    const id = makeId();
+export function addDeck(id, title) {
     return {
         type: ADD_DECK,
         id,
@@ -17,13 +15,10 @@ export function receiveDecks(decks) {
     };
 }
 
-export function addCard(deckId, question, answer) {
-    const id = makeId();
+export function addCard(deckId, card) {
     return {
         type: ADD_CARD,
         deckId,
-        id,
-        question,
-        answer
+        card
     };
 }

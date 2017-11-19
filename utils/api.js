@@ -1,40 +1,35 @@
 import { AsyncStorage } from "react-native";
-import tolower from "lodash.tolower";
 
-const STORAGE_KEY = "storagekey:decks2";
+const DECKS_KEY = "UdaciCards:decks";
 
-export function storeDeck(title) {
-    return (
+export function storeDeck(deckId, title) {
+    return AsyncStorage.mergeItem(
+        DECKS_KEY,
         JSON.stringify({
-            [id]: {
-                title: title,
-                questions: []
+            [deckId]: {
+                deckId,
+                title,
+                cards: []
             }
         })
     );
-    // const id = tolower(title);
-    // return AsyncStorage.mergeItem(
-    //     STORAGE_KEY,
-    //     JSON.stringify({
-    //         [id]: {
-    //             title: title,
-    //             questions: []
-    //         }
-    //     })
-    // );
 }
 
-export function retrieveDecks() {
-    return { decks: {} };
-    // AsyncStorage.clear();
-    // console.log('keys', AsyncStorage.getAllKeys());
-    // // AsyncStorage.removeItem('_40');
-    // return AsyncStorage.getItem(STORAGE_KEY, (error, result) => {
-    //     if (result === null) {
-    //         return { decks: {} };
-    //     }
-    //     return JSON.parse(result);
-    // });
+export async function retrieveDecks() {
+    //AsyncStorage.removeItem(DECKS_KEY);
+    return AsyncStorage.getItem(DECKS_KEY, (err, result) => {
+        if (result === null) {
+            return { decks: {} };
+        } else {
+            return JSON.parse(result);
+        }
+    });
 }
 
-
+export function storeCard(id, card) {
+    return AsyncStorage.getItem(DECKS_KEY).then(result => {
+        const data = JSON.parse(result);
+        data[id].cards.push(card);
+        AsyncStorage.setItem(DECKS_KEY, JSON.stringify(data));
+    });
+}

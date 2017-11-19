@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
-import { storeDeck } from "../utils/api";
+import { storeCard } from "../utils/api";
 import { purple, white, black} from '../utils/colors';
+import { makeId } from '../utils/helper';
 
 export class AddDeckView extends Component {
     state = {
@@ -17,8 +18,14 @@ export class AddDeckView extends Component {
         const answer = this.state.answer;
         this.setState({ question: "" });
         this.setState({ answer: "" });
-        this.props.dispatch(addCard(deckId, question, answer));
-        //storeDeck(title);
+        const id = makeId();
+        const newCard = {
+            id,
+            question,
+            answer
+        }
+        this.props.dispatch(addCard(deckId, newCard));
+        storeCard(deckId, newCard);
         this.props.navigation.goBack();
     };
 

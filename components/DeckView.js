@@ -13,18 +13,19 @@ export class DeckView extends Component {
     };
 
     render() {
-        const decks = Object.values(this.props.decks);
-        const id = this.props.navigation.state.params.id;
-        const deck = decks.filter(myDeck => myDeck.id === id)[0];
+        const deckId = this.props.navigation.state.params.deckId;
+        const decks = Object.values(this.props.state.decks);
+        const deck = decks.filter(myDeck => myDeck.deckId === deckId)[0];
+
         return (
             <View style={styles.deckView}>
                 <Text style={styles.text}>{deck.title}</Text>
                 <Text style={styles.text}>{deck.cards.length} {deck.cards.length === 1 ? "Card" : "Cards"}</Text>
-                <TouchableOpacity style={styles.button} onPress={() => this.addCard(deck.id)} >
+                <TouchableOpacity style={styles.button} onPress={() => this.addCard(deck.deckId)} >
                     <Text style={styles.buttonText}> Add Card </Text>
                 </TouchableOpacity>
                 {deck.cards.length > 0 ? (
-                    <TouchableOpacity style={styles.button} onPress={() => this.startQuiz(deck.id)}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.startQuiz(deck.deckId)}>
                         <Text style={styles.buttonText}> Start a Quiz </Text>
                     </TouchableOpacity>
                 ) : null}
@@ -60,9 +61,9 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps(decks) {
+function mapStateToProps(state) {
     return {
-        decks: decks
+        state
     };
 }
 

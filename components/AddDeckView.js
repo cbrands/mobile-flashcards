@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 import { storeDeck } from "../utils/api";
 import { purple, white, black} from '../utils/colors';
+import { makeId } from '../utils/helper';
 
 export class AddDeckView extends Component {
     state = { title: '' };
@@ -12,8 +13,9 @@ export class AddDeckView extends Component {
         Keyboard.dismiss()
         const title = this.state.title;
         this.setState({ title: "" });
-        this.props.dispatch(addDeck(title));
-        //storeDeck(title);
+        const id = makeId();
+        this.props.dispatch(addDeck(id, title));
+        storeDeck(id, title);
         this.props.navigation.goBack();
     };
 
