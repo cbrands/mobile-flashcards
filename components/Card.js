@@ -1,63 +1,46 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { purple, white, red } from '../utils/colors';
+import { Dimensions, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { purple, white, red, lavender } from '../utils/colors';
+import FlipCard from 'react-native-flip-card';
 
 export class Card extends Component {
-    state = {
-        cardFlipped: false
-    };
-
-    flipCard = () => {
-        this.setState({ cardFlipped: !this.state.cardFlipped });
-    };
 
     render() {
-        if (this.state.cardFlipped) {
-            return (
-                <View style={styles.card}>
+        return (
+            <FlipCard style={styles.card}>
+                <View>
+                    <Text style={styles.text}>{this.props.card.question}</Text>
+                    <Text style={styles.redButtonText}>Click to show answer</Text>
+                </View>
+                <View style={styles.cardBack}>
                     <Text style={styles.text}>{this.props.card.answer}</Text>
-                    <TouchableOpacity style={styles.redButton} onPress={this.flipCard}>
-                        <Text style={styles.redButtonText}>Question</Text>
-                    </TouchableOpacity>
+                        <Text style={styles.redButtonText}>Click to show question</Text>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => {
-                            this.flipCard();
-                            this.props.handleAnswer(true);
-                        }}
-                    >
+                        onPress={() => { this.props.handleAnswer(true);}} >
                         <Text style={styles.buttonText}>Correct</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => {
-                            this.flipCard();
-                            this.props.handleAnswer(false);
-                        }}
-                    >
+                        onPress={() => { this.props.handleAnswer(false); }} >
                         <Text style={styles.buttonText}>Incorrect</Text>
                     </TouchableOpacity>
                 </View>
-            );
-        }
-
-        return (
-            <View style={styles.card}>
-                <Text style={styles.text}>{this.props.card.question}</Text>
-                <TouchableOpacity style={styles.redButton} onPress={this.flipCard}>
-                    <Text style={styles.redButtonText}>Answer</Text>
-                </TouchableOpacity>
-            </View>
+            </FlipCard>
         );
     }
 }
 
+const dimensions = Dimensions.get('window');
 const styles = StyleSheet.create({
     card: {
-        //flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: white
+        backgroundColor: white,
+        borderWidth: 0,
+    },
+    cardBack: {
+        backgroundColor: lavender,
+        height: dimensions.height,
+        width: dimensions.width
     },
     text: {
         fontSize: 20,
@@ -66,8 +49,6 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: purple,
-        alignItems: "center",
-        justifyContent: "center",
         marginTop: 40,
     },
     redButton: {

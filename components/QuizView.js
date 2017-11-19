@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {  Dimensions, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Card } from "./Card";
 import { connect } from "react-redux";
 import { clearLocalNotification, setLocalNotification } from "../utils/notification";
@@ -56,8 +56,8 @@ class QuizView extends Component {
 
         return (
             <View style={styles.quizView}>
-                <Text style={styles.leftText}>
-                    {index} / {cards.length}
+                <Text style={styles.numberText}>
+                    {index + 1} / {cards.length}
                 </Text>
                 <Card card={cards[index]} handleAnswer={this.handleAnswer} />
             </View>
@@ -65,22 +65,26 @@ class QuizView extends Component {
     }
 }
 
+const dimensions = Dimensions.get('window');
 const styles = StyleSheet.create({
     quizView: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: white
+        // flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: white,
+        height: dimensions.height
     },
     text: {
         fontSize: 20,
         textAlign: 'center',
         marginTop: 10,
     },
-    leftText: {
+    numberText: {
         fontSize: 20,
+        justifyContent: 'flex-start',
         textAlign: 'left',
-        marginTop: 10,
+        marginTop: 40,
+        height: 40
     },
     button: {
         backgroundColor: purple,
