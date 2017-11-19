@@ -16,6 +16,7 @@ export function storeDeck(deckId, title) {
 }
 
 export async function retrieveDecks() {
+    //To clean up the local storage uncomment the line below and start the application
     //AsyncStorage.removeItem(DECKS_KEY);
     return AsyncStorage.getItem(DECKS_KEY, (err, result) => {
         if (result === null) {

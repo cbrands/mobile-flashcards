@@ -10,7 +10,7 @@ export class AddDeckView extends Component {
     state = { title: '' };
 
     onSubmit = () => {
-        Keyboard.dismiss()
+        Keyboard.dismiss();
         const title = this.state.title;
         this.setState({ title: "" });
         const id = makeId();
