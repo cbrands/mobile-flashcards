@@ -16,7 +16,7 @@ export class AddDeckView extends Component {
         const id = makeId();
         this.props.dispatch(addDeck(id, title));
         storeDeck(id, title);
-        this.props.navigation.goBack();
+        this.props.navigation.navigate("Deck", { id });
     };
 
 

@@ -7,8 +7,8 @@ import { white, black, lavender } from '../utils/colors';
 export class DeckListView extends Component {
 
     selectDeck = deckId => {
-        this.props.navigation.navigate("Deck", { deckId })
-    }
+        this.props.navigation.navigate("Deck", { deckId });
+    };
 
     render() {
         if (this.props.decks === null) {

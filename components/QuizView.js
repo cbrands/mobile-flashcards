@@ -68,7 +68,6 @@ class QuizView extends Component {
 const dimensions = Dimensions.get('window');
 const styles = StyleSheet.create({
     quizView: {
-        // flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: white,
