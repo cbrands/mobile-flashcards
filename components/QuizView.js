@@ -36,9 +36,7 @@ class QuizView extends Component {
 
     render() {
         const deckId = this.props.navigation.state.params.deckId;
-        console.log('quiz deckId', deckId);
         const cards = this.props.state.decks[deckId].cards;
-        console.log('quiz cards', cards);
         const { index, score } = this.state;
         if (index === cards.length) {
             return (

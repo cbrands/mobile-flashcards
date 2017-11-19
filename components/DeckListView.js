@@ -20,8 +20,6 @@ export class DeckListView extends Component {
             );
         }
 
-        console.log('decklist =', this.props.decks);
-
         const navigation = this.props.navigation;
         return (
             <View style={styles.deckListView}>
