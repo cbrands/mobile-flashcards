@@ -18,10 +18,6 @@ function createNotification() {
         ios: {
             sound: true,
         },
-        android: {
-            sound: true,
-            priority: 'high'
-        },
     };
 }
 
