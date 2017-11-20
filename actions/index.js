@@ -1,9 +1,9 @@
 import { ADD_DECK, RECEIVE_DECKS, ADD_CARD } from './types';
 
-export function addDeck(id, title) {
+export function addDeck(deckId, title) {
     return {
         type: ADD_DECK,
-        id,
+        deckId,
         title
     };
 }

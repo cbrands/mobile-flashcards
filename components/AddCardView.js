@@ -6,7 +6,7 @@ import { storeCard } from "../utils/api";
 import { purple, white, black} from '../utils/colors';
 import { makeId } from '../utils/helper';
 
-export class AddDeckView extends Component {
+export class AddCardView extends Component {
     state = {
         question: '',
         answer: ''
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
         color: white
     }
 });
-export default connect()(AddDeckView);
+export default connect()(AddCardView);

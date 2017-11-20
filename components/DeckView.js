@@ -16,7 +16,6 @@ export class DeckView extends Component {
         const deckId = this.props.navigation.state.params.deckId;
         const decks = Object.values(this.props.state.decks);
         const deck = decks.filter(myDeck => myDeck.deckId === deckId)[0];
-
         return (
             <View style={styles.deckView}>
                 <Text style={styles.text}>{deck.title}</Text>
